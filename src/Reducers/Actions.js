@@ -1,2 +1,4 @@
 export const SNACKBAR_RESTORE = 'SNACKBAR_RESTORE';
 export const SNACKBAR_SHOW = 'SNACKBAR_SHOW';
+
+export const USER_AUTH = 'USER_AUTH';

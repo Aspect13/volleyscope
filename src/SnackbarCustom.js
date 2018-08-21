@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {Snackbar} from "@material-ui/core/es/index";
+import Snackbar from '../node_modules/@material-ui/core/Snackbar/Snackbar';
 import {SNACKBAR_RESTORE} from "./Reducers/Actions";
 
 class SnackbarCustom extends React.Component {

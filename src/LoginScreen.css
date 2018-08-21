@@ -1,0 +1,18 @@
+#loginContainer {
+	background: url("./Media/vb1.jpg") no-repeat;
+	background-size: cover;
+	height: 100%;
+	text-align: center;
+	/*display: -webkit-box;*/
+	/*margin-top: 50px;*/
+	/*padding: 80px;*/
+	/*max-height: min-content;*/
+}
+
+#loginContainer > div{
+	padding-top: 10%;
+}
+
+#firebaseui_container > div {
+	background-color: rgba(222,169,58,0.34);
+}

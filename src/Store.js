@@ -5,6 +5,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {createBrowserHistory} from 'history';
 import { connectRouter, routerMiddleware } from 'connected-react-router'
 import SnackbarReducer from './Reducers/SnackbarReducer';
+import UserReducer from "./Reducers/UserReducer";
 
 
 export const appHistory = createBrowserHistory();
@@ -24,6 +25,7 @@ const middlewares = localTest => {
 
 const appReducers = combineReducers({
     SnackbarReducer,
+    UserReducer,
 });
 
 const Store = createStore(
