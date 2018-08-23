@@ -14,9 +14,9 @@ import React from "react";
 
 export default class CustomToolbar extends Toolbar {
     navigations = [
-        {action: 'PREV', label: 'back', leftIcon: <KeyboardArrowLeft/>},
-        {action: 'TODAY', label: 'today', leftIcon: <Today />},
-        {action: 'NEXT', label: 'next', rightIcon: <KeyboardArrowRight/>},
+        {action: 'PREV', label: this.props.messages.previous, leftIcon: <KeyboardArrowLeft/>},
+        {action: 'TODAY', label: this.props.messages.today, leftIcon: <Today />},
+        {action: 'NEXT', label: this.props.messages.next, rightIcon: <KeyboardArrowRight/>},
     ];
 
     viewIcons = {
@@ -48,7 +48,7 @@ export default class CustomToolbar extends Toolbar {
             variant={this.props.view === item ? 'outlined' : 'flat'}
         >
             {this.viewIcons[item]}
-            {item}
+            {this.props.messages[item] || item}
         </Button>
     ));
 
@@ -57,7 +57,6 @@ export default class CustomToolbar extends Toolbar {
         return (
             <Grid
                 item
-                xs={12}
                 className='rbc-toolbar'
                 container
                 // style={styles}
@@ -80,7 +79,7 @@ export default class CustomToolbar extends Toolbar {
                     item
                     xs={12}
                     sm
-                    style={{textAlign: 'center'}}
+                    style={{textAlign: 'center', alignSelf: 'center'}}
                 >
                     <Typography
                         variant='title'
