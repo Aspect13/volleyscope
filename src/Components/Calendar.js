@@ -37,8 +37,9 @@ const CustomMonthHeader = props => {
 };
 
 const CustomMonthDateHeader = props => {
-    const {label, isOffRange} = props;
+    const {label, isOffRange, onDrillDown, date, drilldownView} = props;
         // {/*<Button variant='raised' color='secondary' onClick={() => console.log(props)}>props</Button>*/}
+    const handleClick = event => !isOffRange && onDrillDown(event);
     return (
         /*
         <div
@@ -65,10 +66,10 @@ const CustomMonthDateHeader = props => {
                     noWrap
                     style={{
                         userSelect: 'none',
-                        color: isOffRange && '#c1d5e0',
+                        // color: isOffRange && '#c1d5e0',
                         cursor: isOffRange ? 'initial' : 'pointer',
                     }}
-                    onClick={() => !isOffRange && console.log(props)}
+                    onClick={handleClick}
                 >
                     {label}
                 </Typography>
@@ -81,16 +82,18 @@ const CustomMonthEvent = props => {
     const {title,}= props;
     const {desc, }= props.event;
     return (
-        <Paper className='qqq'>
             <Tooltip title={desc || ''}>
                 <Typography
                     variant='body1'
-                    onClick={() => console.log(props)}
+                    onClick={() => {
+                        console.log(props);
+                    }}
+                    // color='textPrimary'
+                    style={{color: 'inherit'}}
                 >
                     {title}
                 </Typography>
             </Tooltip>
-        </Paper>
     )
 };
 
@@ -209,6 +212,7 @@ const Calendar = () => {
                 events={events}
                 localizer={momentLocalizer(moment)}
                 // defaultDate={new Date()}
+                tooltipAccessor={null}
                 timeslots={6}
                 step={10}
                 selectable

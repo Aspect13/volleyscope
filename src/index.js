@@ -12,13 +12,13 @@ import LoginScreen from "./LoginScreen";
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main:'#26a69a',
             light:'#64d8cb',
+            main:'#26a69a',
             dark:'#00766c',
         },
         secondary: {
-            main: '#90a4ae',
             light:'#c1d5e0',
+            main: '#90a4ae',
             dark:'#62757f',
         }
     },

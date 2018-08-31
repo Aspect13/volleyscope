@@ -105,7 +105,7 @@ button.rbc-input::-moz-focus-inner {
 }
 */
 .rbc-off-range-bg {
-	background: #90a4ae;
+	background: #90a4ae54;
 }
 .rbc-header {
 /*
@@ -257,22 +257,22 @@ button.rbc-input::-moz-focus-inner {
 }
 */
 
-/*
+
 .rbc-event {
 	padding: 2px 5px;
-	background-color: #3174ad;
+	background-color: #00766c;
 	border-radius: 5px;
-	color: #fff;
+	color: #c1d5e0;
 	cursor: pointer;
 }
+
 .rbc-slot-selecting .rbc-event {
 	cursor: inherit;
 	pointer-events: none;
 }
 .rbc-event.rbc-selected {
-	background-color: #265985;
+	box-shadow: 0 0 10px 2px #62757f;
 }
-*/
 .rbc-event-label {
 	font-size: 80%;
 }
@@ -317,22 +317,30 @@ button.rbc-input::-moz-focus-inner {
 	padding: 0 1px 1px 1px;
 }
 .rbc-selected-cell {
-	background-color: rgba(0, 0, 0, 0.1);
+	/*background-color: rgba(0, 0, 0, 0.1);*/
+	background-color: #c1d5e0a6;
 }
 .rbc-show-more {
-	background-color: rgba(255, 255, 255, 0.3);
+	/*background-color: rgba(255, 255, 255, 0.3);*/
+	background-color: #26a69a;
 	z-index: 4;
 	font-weight: bold;
 	font-size: 85%;
 	height: auto;
 	line-height: normal;
 	white-space: nowrap;
+	text-align: center;
+	color: #33414B;
+	text-decoration: overline;
+	border-radius: 0px 0px 5px 5px;;
 }
 .rbc-month-view {
 	position: relative;
 /*
 	border: 1px solid red;
 */
+	box-shadow: 0px 2px 10px 1px #26a69a;
+	margin-top: 5px;
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
@@ -385,11 +393,29 @@ button.rbc-input::-moz-focus-inner {
 	padding-right: 5px;
 	text-align: right;
 }
+.rbc-today {
+	background-color: #64d8cb4a;
+	/*border: 1px solid #26a69a73;*/
+}
 .rbc-date-cell.rbc-now > h1 {
 	font-weight: bold;
-	color: #64d8cb;
-	border-color: #64d8cb;
+	/*color: #26a69a;*/
+	color: black;
+	/*border-color: #64d8cb;*/
 }
+.rbc-date-cell:hover {
+	background-color: #26a69a;
+}
+.rbc-date-cell > h1:hover {
+	color: white;
+}
+.rbc-date-cell.rbc-off-range > h1 {
+	color: #00766c63;
+}
+.rbc-day-bg + .rbc-day-bg {
+	border-left: 1px inset #c1d5e0;
+}
+
 /*
 .rbc-date-cell > a,
 .rbc-date-cell > a:active,
@@ -428,18 +454,20 @@ button.rbc-input::-moz-focus-inner {
 .rbc-overlay {
 	position: absolute;
 	z-index: 5;
-	border: 1px solid red;
+	border: 1px solid #62757f;
 	background-color: #fff;
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 	padding: 10px;
+	border-radius: 5px;
 }
 .rbc-overlay > * + * {
 	margin-top: 1px;
 }
 .rbc-overlay-header {
-	border-bottom: 1px solid blue;
+	border-bottom: 1px solid #c1d5e0;
 	margin: -10px -10px 5px -10px;
 	padding: 2px 10px;
+	text-align: center;
 }
 
 
@@ -717,6 +745,6 @@ button.rbc-input::-moz-focus-inner {
 	position: absolute;
 	z-index: 3;
 	height: 1px;
-	background-color: #64d8cb;
+	background-color: #00766c;
 	pointer-events: none;
 }
