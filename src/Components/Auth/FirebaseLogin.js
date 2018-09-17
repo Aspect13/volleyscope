@@ -1,6 +1,6 @@
 // Configure FirebaseUI.
 import firebase from "firebase";
-import Fire from "../Fire";
+import Fire from "../../Fire";
 import FirebaseAuth from "react-firebaseui/FirebaseAuth";
 import React from "react";
 

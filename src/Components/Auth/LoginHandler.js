@@ -1,15 +1,29 @@
-import {TOKEN_LOCAL_KEY} from "../../Api";
+import {API_PATH, TOKEN_KEY_BACKEND, TOKEN_KEY_FRONTEND} from "../../Api";
+import {LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_REQUEST} from "../../Reducers/Actions";
 
-const BACKEND_TOKEN_KEY = 'access_token';
+
 
 export const errorToJSON = err => {
     if (err instanceof Error) {
-        return {[err.stack]: err.message};
+        return {[err.name]: err.message};
     }
     return err
 };
 
-const loginUser = creds => {
+export const errorToMsg = err => {
+    if (err instanceof Error) {
+        return `${err.name}: ${err.message}`;
+    }
+    return `${err.error}: ${err.description}`;
+};
+
+
+export const logoutUser = () => {
+    localStorage.removeItem(TOKEN_KEY_FRONTEND);
+    return dispatch => dispatch({type: LOGOUT_REQUEST,});
+};
+
+export const loginUser = creds => {
     let config = {
         method: 'POST',
         headers: { 'Content-Type':'application/json' },
@@ -21,29 +35,28 @@ const loginUser = creds => {
             payload: creds
         });
 
-        return fetch(API_PATH + '/auth/', config)
+        return fetch(API_PATH + 'auth', config)
             .then(response =>
                 response.json().then(user => ({ user, response }))
             ).then(({ user, response }) =>  {
                 if (!response.ok) {
                     dispatch({
                         type: LOGIN_FAILURE,
-                        payload: user
+                        payload: user,
                     });
                     return Promise.reject(user);
                 } else {
-                    localStorage.setItem(TOKEN_LOCAL_KEY, user[BACKEND_TOKEN_KEY]);
+                    localStorage.setItem(TOKEN_KEY_FRONTEND, user[TOKEN_KEY_BACKEND]);
                     dispatch({
-                        type: LOGIN_SUCCESS
+                        type: LOGIN_SUCCESS,
                     });
                 }
             }).catch(err => {
                 console.log("Auth Error: ", err);
                 dispatch({
                     type: LOGIN_FAILURE,
-                    payload: errorToJSON(err)
+                    payload: errorToMsg(err),
                 });
             })
     }
 };
-export default loginUser;

@@ -2,3 +2,7 @@ export const SNACKBAR_RESTORE = 'SNACKBAR_RESTORE';
 export const SNACKBAR_SHOW = 'SNACKBAR_SHOW';
 
 export const USER_AUTH = 'USER_AUTH';
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
