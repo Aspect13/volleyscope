@@ -7,7 +7,7 @@ import {Link, Route, Switch} from "react-router-dom";
 import Store, {appHistory} from "./Store";
 import { ConnectedRouter } from 'connected-react-router';
 import App from "./App";
-import LoginScreen from "./LoginScreen";
+import LoginScreen from "./Login/LoginScreen";
 
 const theme = createMuiTheme({
     palette: {
