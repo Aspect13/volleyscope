@@ -10,6 +10,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
 import Fire from '../Fire';
 import Avatar from "@material-ui/core/Avatar/Avatar";
+import {logoutUser} from "../Components/Auth/LoginHandler";
 
 
 // export const parseJWT = token => {
@@ -82,7 +83,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLogoutClick: () => Fire.auth().signOut(),
+        // onLogoutClick: () => Fire.auth().signOut(),
+        onLogoutClick: () => dispatch(logoutUser()),
         // move: newLocation => dispatch(push(newLocation)),
         // changeTitle: newTitle => dispatch({type: APPBAR_TITLE_CHANGE, payload: newTitle}),
     }

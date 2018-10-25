@@ -13,7 +13,7 @@ export const customFetch = async (location, config={}) => {
     let newConfig = {...defaultConfig, ...config, headers: {...defaultConfig.headers, ...config.headers}};
     // console.log('FETCH CONFIG', newConfig);
 
-    if (module.hot) newConfig = {...newConfig, mode: 'no-cors'};
+    // if (module.hot) newConfig = {...newConfig, mode: 'no-cors'};
 
     let response = await fetch(API_PATH + location, newConfig);
     if (response.status === 401) {

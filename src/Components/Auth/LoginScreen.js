@@ -14,23 +14,22 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Button from "@material-ui/core/Button/Button";
 import {loginUser} from "./LoginHandler";
+import LinearProgress from "@material-ui/core/es/LinearProgress/LinearProgress";
 
 
 class LoginScreen extends React.Component {
     state = {
-        email: '',
-        password: '',
+        email: 'Vladimir666@mail.rf',
+        password: 'iamtheking',
         showPassword: false,
     };
 
     handleClickShowPassword = () => this.setState(state => ({showPassword: !state.showPassword}));
 
-    handleChange = prop => event => {
-        this.setState({ [prop]: event.target.value });
-    };
+    handleChange = prop => event => this.setState({ [prop]: event.target.value });
 
     handleSubmit = () => {
-        const {email, password} = this.props;
+        const {email, password} = this.state;
         this.props.loginUser({email, password});
     };
 
@@ -89,6 +88,7 @@ class LoginScreen extends React.Component {
                                 item
                                 xs={12}
                             >
+                                {this.props.isLoading && <LinearProgress />}
                                 <Button
                                     variant="raised"
                                     type='button'
@@ -98,6 +98,7 @@ class LoginScreen extends React.Component {
                                 >
                                     Sign In
                                 </Button>
+
                             </Grid>
                         </Grid>
             </Paper>

@@ -11,19 +11,20 @@ import Fire from './Fire';
 import Calendar from "./Components/Calendar";
 import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
 import Paper from "@material-ui/core/Paper/Paper";
+import {setUser} from "./Components/Auth/LoginHandler";
 
 const MainPage = (props) => {
     console.log('props',props.user);
     return <div>
-        <h1>Hi {props.user.displayName}!</h1>
-        <h3>id {props.user.uid}</h3>
+        <h1>Hi {props.user.first_name}!</h1>
+        <h3>id {props.user.id}</h3>
         <h3>email {props.user.email}</h3>
         <br/>
         Main page
         <br/>
         <Link to={'/calendar'}>to calendar</Link>
         <br/>
-        <button onClick={(event) => {event.preventDefault(); Fire.auth().signOut()}}>Sign Out</button>
+        {/*<button onClick={(event) => {event.preventDefault(); Fire.auth().signOut()}}>Sign Out</button>*/}
         <br/>
     </div>
 };
@@ -47,23 +48,27 @@ const styles = {
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isLoading: true,
-        };
-        this.addAuthListener();
+        props.setUser();
     }
-
-    // Listen to the Firebase Auth state and set the local state.
-    addAuthListener = () => Fire.auth().onAuthStateChanged(
-        user => {
-            console.log('Listener user:', user);
-            this.setState({isLoading: false});
-            this.props.storeUser(user);
-        }
-    );
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         isLoading: true,
+    //     };
+    //     this.addAuthListener();
+    // }
+    //
+    // // Listen to the Firebase Auth state and set the local state.
+    // addAuthListener = () => Fire.auth().onAuthStateChanged(
+    //     user => {
+    //         console.log('Listener user:', user);
+    //         this.setState({isLoading: false});
+    //         this.props.storeUser(user);
+    //     }
+    // );
 
     render() {
-        if (this.state.isLoading) return (
+        if (this.props.isLoading) return (
             <div style={styles.circularContainer}>
                 <CircularProgress
                     size={150}
@@ -73,12 +78,14 @@ class App extends Component {
         );
 
         // console.log('APP user ===', this.props.user);
-        if (!this.props.user) return <Redirect
-            to={{
-                pathname: "/login",
-                search: `?next=${this.props.location.pathname}`
-            }}
-        />;
+        if (!this.props.user) {
+            return <Redirect
+                to={{
+                    pathname: "/login",
+                    search: `?next=${this.props.location.pathname}`
+                }}
+            />;
+        }
 
         return (
             <div style={styles.root}>
@@ -97,14 +104,14 @@ class App extends Component {
 
 
 const mapStateToProps = state => {
-    return {
-        user: state.UserReducer
-    };
+    let { user, isLoading, } = state.UserReducer;
+    return { user, isLoading, };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        storeUser: userData => dispatch({type: USER_AUTH, payload: userData}),
+        // storeUser: userData => dispatch({type: USER_AUTH, payload: userData}),
+        setUser: () => setUser(dispatch),
     }
 };
 

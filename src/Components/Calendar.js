@@ -16,7 +16,8 @@ import Tooltip from "../../node_modules/@material-ui/core/es/Tooltip/Tooltip";
 const styles = {
     height: 'calc(100% - 80px)',
     padding: '8px',
-    display: 'inline-table',
+    // display: 'inline-table',
+    overflowY: 'auto',
 };
 
 const CustomMonthHeader = props => {
